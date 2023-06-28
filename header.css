@@ -1,0 +1,101 @@
+.header {
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 66;
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+}
+.navigation {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+  font-weight: 500;
+  align-items: center;
+}
+.navigation__item {
+  cursor: pointer;
+}
+.navigation__item:hover {
+  color: #4374e5;
+}
+.header__burger {
+  display: none;
+}
+.header__burger {
+  width: 24px;
+  height: 24px;
+  padding: 0 3px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.header__burger span {
+  width: 18px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #222222;
+  transition: all 0.5s;
+}
+.header__burger span:nth-of-type(2) {
+  top: calc(50% - 5px);
+}
+.header__burger span:nth-of-type(3) {
+  top: calc(50% + 5px);
+}
+@media (width <630px) {
+  .header__container {
+    padding: 8px 16px;
+    position: relative;
+    z-index: 66;
+  }
+  .header__logo {
+    position: relative;
+    z-index: 99;
+  }
+  .navigation {
+    flex-direction: column;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    padding-top: 18px;
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 48px);
+    top: 20px;
+    right: 0;
+    visibility: hidden;
+    /* z-index: 0; */
+    transition: all 0.5s;
+  }
+  .navigation.navigation_active {
+    /* position: absolute; */
+    top: 48px;
+    visibility: visible;
+    /* right: 0; */
+    transition: top 0.5s;
+  }
+  .header__burger {
+    display: block;
+  }
+  .header__burger:has(~ .navigation_active) span:first-child {
+    width: 0;
+    transition: all 0.5s;
+  }
+  .header__burger:has(~ .navigation_active) span:nth-of-type(2) {
+    transform: rotate(45deg) translate(0);
+    top: 50%;
+    left: 0%;
+  }
+  .header__burger:has(~ .navigation_active) span:nth-of-type(3) {
+    transform: rotate(-45deg) translate(0);
+    top: 50%;
+    left: 0%;
+  }
+}
